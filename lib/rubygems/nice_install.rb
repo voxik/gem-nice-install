@@ -1,7 +1,8 @@
-require 'rubygems/nice_install/base_ext_installer'
-require 'rubygems/nice_install/fedora_ext_installer'
+require 'rubygems/nice_install/distro_guesser'
 
 module Gem
+  ext_installer = DistroGuesser.distro_ext_installer.new
+
   pre_install do |gem_installer|
     unless gem_installer.spec.extensions.empty?
       gem_installer.extend Gem::Installer::Nice

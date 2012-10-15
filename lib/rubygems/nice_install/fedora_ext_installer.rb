@@ -4,6 +4,7 @@ module Gem
     def dep_files
       %w[fedora.yml]
     end
+
     def default_ext_dependencies
       get_basic_deps
     end
