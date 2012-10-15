@@ -1,6 +1,6 @@
 require 'rubygems/nice_install/base_ext_installer'
 
-module Gem
+module Gem::Installer::Nice
   class DistroGuesser
     def self.distro
       @distro ||= if !release_files.grep(/fedora/).empty?
@@ -17,7 +17,7 @@ module Gem
 
     def self.distro_ext_installer
       require "rubygems/nice_install/#{distro}_ext_installer"
-      Gem::const_get("#{distro.capitalize}ExtInstaller")
+      Gem::Installer::Nice.const_get("#{distro.capitalize}ExtInstaller")
     end
 
     def self.version

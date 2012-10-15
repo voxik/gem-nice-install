@@ -1,5 +1,5 @@
 require 'yaml'
-module Gem
+module Gem::Installer::Nice
   class BaseExtInstaller
     def default_ext_dependencies
       raise NotImplementedError

@@ -1,4 +1,4 @@
-module Gem
+module Gem::Installer::Nice
   class FedoraExtInstaller < BaseExtInstaller
 
     def dep_files

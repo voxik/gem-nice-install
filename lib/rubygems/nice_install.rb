@@ -1,4 +1,3 @@
-require 'rubygems/nice_install/distro_guesser'
 
 module Gem
   pre_install do |gem_installer|
@@ -10,6 +9,8 @@ module Gem
 
   class Installer
     module Nice
+      require 'rubygems/nice_install/distro_guesser'
+
       def build_extensions
         super
       rescue ExtensionBuildError => e
