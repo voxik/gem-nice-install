@@ -1,11 +1,15 @@
 module Gem
   class FedoraExtInstaller < BaseExtInstaller
+
+    def dep_files
+      %w[fedora.yml]
+    end
     def default_ext_dependencies
-      %w{gcc make ruby-devel}
+      get_basic_deps
     end
 
     def gem_ext_dependencies_for gem_name
-      default_ext_dependencies
+      default_ext_dependencies + get_deps(gem_name)
     end
 
     def ext_dependency_present? dep_name

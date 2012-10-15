@@ -1,0 +1,152 @@
+basic_build_deps:
+- gcc
+- ruby-devel
+- make
+gems:
+  atk:
+  - atk-devel
+  atk-devel:
+  - atk-devel
+  bigdecimal:
+  - db4-devel
+  - gdbm-devel
+  - libffi-devel
+  - libyaml-devel
+  - ncurses-devel
+  - openssl-devel
+  - readline-devel
+  - tk-devel
+  cairo:
+  - cairo-devel
+  cairo-devel:
+  - cairo-devel
+  curb:
+  - libcurl-devel
+  eventmachine:
+  - openssl-devel
+  ffi:
+  - libffi-devel
+  gdk_pixbuf2:
+  - gdk-pixbuf2-devel
+  - rubygem-cairo-devel
+  gdk_pixbuf2-devel:
+  - gdk-pixbuf2-devel
+  - rubygem-cairo-devel
+  glib2:
+  - glib2-devel
+  glib2-devel:
+  - glib2-devel
+  gtk2:
+  - gtk2-devel
+  - rubygem-cairo-devel
+  gtk2-devel:
+  - gtk2-devel
+  - rubygem-cairo-devel
+  gtksourceview2:
+  - gtksourceview2-devel
+  gtksourceview2-devel:
+  - gtksourceview2-devel
+  idn:
+  - libidn-devel
+  io-console:
+  - db4-devel
+  - gdbm-devel
+  - libffi-devel
+  - libyaml-devel
+  - ncurses-devel
+  - openssl-devel
+  - readline-devel
+  - tk-devel
+  krb5-auth:
+  - krb5-devel
+  mkrf:
+  - libxml2-devel
+  nokogiri:
+  - libxml2-devel
+  - libxslt-devel
+  pango:
+  - pango-devel
+  - rubygem-cairo-devel
+  pango-devel:
+  - pango-devel
+  - rubygem-cairo-devel
+  passenger:
+  - httpd-devel
+  - libcurl-devel
+  - libev-devel
+  - zlib-devel
+  passenger-devel:
+  - httpd-devel
+  - libcurl-devel
+  - libev-devel
+  - zlib-devel
+  passenger-native:
+  - httpd-devel
+  - libcurl-devel
+  - libev-devel
+  - zlib-devel
+  passenger-native-libs:
+  - httpd-devel
+  - libcurl-devel
+  - libev-devel
+  - zlib-devel
+  pg:
+  - postgresql-devel
+  pkg-config:
+  - cairo-devel
+  poppler:
+  - poppler-glib-devel
+  - rubygem-cairo-devel
+  - rubygem-gtk2-devel
+  poppler-devel:
+  - poppler-glib-devel
+  - rubygem-cairo-devel
+  - rubygem-gtk2-devel
+  qpid:
+  - qpid-cpp-client-devel
+  rake:
+  - db4-devel
+  - gdbm-devel
+  - libffi-devel
+  - libyaml-devel
+  - ncurses-devel
+  - openssl-devel
+  - readline-devel
+  - tk-devel
+  rdoc:
+  - db4-devel
+  - gdbm-devel
+  - libffi-devel
+  - libyaml-devel
+  - ncurses-devel
+  - openssl-devel
+  - readline-devel
+  - tk-devel
+  rsvg2:
+  - librsvg2-devel
+  - rubygem-cairo-devel
+  rsvg2-devel:
+  - librsvg2-devel
+  - rubygem-cairo-devel
+  ruby-opengl:
+  - freeglut-devel
+  - libGL-devel
+  - libGLU-devel
+  sqlite3:
+  - sqlite-devel
+  thin:
+  - libcurl-devel
+  typhoeus:
+  - libcurl-devel
+  vte:
+  - vte-devel
+  vte-devel:
+  - vte-devel
+  xmlparser:
+  - expat-devel
+  zoom:
+  - libgcrypt-devel
+  - libgpg-error-devel
+  - libxslt-devel
+  - libyaz-devel
+  - tcp_wrappers-devel
