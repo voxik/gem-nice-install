@@ -1,13 +1,17 @@
-Gem.pre_install do |gem_installer|
-  unless gem_installer.spec.extensions.empty?
-  have_tools = %w{gcc make sh}.all? do |t|
-    system("#{t} --version > /dev/null 2>&1")
-  end
+if Gem.respond_to? :default_ext_dependencies
 
-  unless have_tools
-    raise Gem::InstallError, <<-EOT
-The '#{gem_installer.spec.name}' native gem requires installed build tools.
-    EOT
+  Gem.pre_install do |gem_installer|
+    unless gem_installer.spec.extensions.empty?
+      missing_deps = Gem.gem_ext_dependencies_for(gem_installer.spec.name).delete_if do |t|
+        Gem.ext_dependency_present?(t)
+      end
+
+      unless missing_deps.empty?
+        unless Gem.install_ext_dependencies_for(gem_installer.spec.name, missing_deps)
+          raise Gem::InstallError, "Failed to install native dependencies for '#{gem_installer.spec.name}'."
+        end
+      end
     end
   end
+
 end
