@@ -19,8 +19,8 @@ module Gem
 
     def install_ext_dependencies_for gem_name, deps
       puts "Yum installing these native dependencies for Gem '#{gem_name}':"
-      puts deps.join
-      system("sudo yum install #{deps.join}")
+      puts deps.join ' '
+      system("sudo yum install #{deps.join ' '}")
     end
   end
 end
