@@ -2,17 +2,13 @@ require 'rubygems/nice_install/base_ext_installer'
 require 'rubygems/nice_install/fedora_ext_installer'
 
 module Gem
-
   pre_install do |gem_installer|
     unless gem_installer.spec.extensions.empty?
       gem_installer.extend Gem::Installer::Nice
     end
   end
 
-end
 
-
-module Gem
   class Installer
     module Nice
       def build_extensions
