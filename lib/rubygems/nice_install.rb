@@ -15,20 +15,20 @@ module Gem
         super
       rescue ExtensionBuildError => e
         # Install platform dependencies and try the build again.
-        install_platform_dependencies
-        super
+        super if install_platform_dependencies
+        raise
       end
 
       def install_platform_dependencies
-        ext_installer = DistroGuesser.distro_ext_installer.new
+        if ext_installer = DistroGuesser.distro_ext_installer
+          missing_deps = ext_installer.gem_ext_dependencies_for(spec.name).delete_if do |t|
+            ext_installer.ext_dependency_present?(t)
+          end
 
-        missing_deps = ext_installer.gem_ext_dependencies_for(spec.name).delete_if do |t|
-          ext_installer.ext_dependency_present?(t)
-        end
-
-        unless missing_deps.empty?
-          unless ext_installer.install_ext_dependencies_for(spec.name, missing_deps)
-            raise Gem::InstallError, "Failed to install native dependencies for '#{spec.name}'."
+          unless missing_deps.empty?
+            unless ext_installer.install_ext_dependencies_for(spec.name, missing_deps)
+              raise Gem::InstallError, "Failed to install native dependencies for '#{spec.name}'."
+            end
           end
         end
       end

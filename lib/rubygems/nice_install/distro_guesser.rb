@@ -11,13 +11,14 @@ module Gem::Installer::Nice
       elsif !release_files.grep(/SuSe/).empty?
         :opensuse
       else
-        :fedora
+        :base
       end
     end
 
     def self.distro_ext_installer
       require "rubygems/nice_install/#{distro}_ext_installer"
-      Gem::Installer::Nice.const_get("#{distro.capitalize}ExtInstaller")
+      klass = Gem::Installer::Nice.const_get("#{distro.capitalize}ExtInstaller")
+      klass.new if klass && klass != BaseExtInstaller
     end
 
     def self.version
