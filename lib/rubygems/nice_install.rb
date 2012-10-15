@@ -1,8 +1,6 @@
 require 'rubygems/nice_install/distro_guesser'
 
 module Gem
-  ext_installer = DistroGuesser.distro_ext_installer.new
-
   pre_install do |gem_installer|
     unless gem_installer.spec.extensions.empty?
       gem_installer.extend Gem::Installer::Nice
@@ -21,7 +19,7 @@ module Gem
       end
 
       def install_platform_dependencies
-        ext_installer = FedoraExtInstaller.new
+        ext_installer = DistroGuesser.distro_ext_installer.new
 
         missing_deps = ext_installer.gem_ext_dependencies_for(spec.name).delete_if do |t|
           ext_installer.ext_dependency_present?(t)
