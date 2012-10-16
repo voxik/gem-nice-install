@@ -1,10 +1,5 @@
 module Gem::Installer::Nice
   class FedoraExtInstaller < BaseExtInstaller
-    begin
-      require 'dbus'
-    rescue LoadError
-      warn "PackageKit installation require 'ruby-dbus' package to be installed."
-    end
 
     def dep_files
       %w[fedora.yml]
@@ -29,13 +24,21 @@ module Gem::Installer::Nice
 
     private
 
+    def install_using_yum(names=[])
+      system "su -c 'yum install #{names.join(' ')}'"
+    end
+
     def install_using_packagekit(names=[])
       begin
+        require 'dbus'
         session_bus = DBus::SessionBus.instance
         pkg_kit = session_bus.introspect("org.freedesktop.PackageKit", "/org/freedesktop/PackageKit")
         pkg_kit['org.freedesktop.PackageKit.Modify'].InstallPackageNames(0, names, 'show-confirm-install')
       rescue Error::ENOENT
-        system "su -c 'yum install #{names.join(' ')}'"
+        install_using_yum names
+      rescue LoadError
+        warn "PackageKit installation require 'ruby-dbus' package to be installed. (yum install ruby-dbus)"
+        install_using_yum names
       end
     end
 
