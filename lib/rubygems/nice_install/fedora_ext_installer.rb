@@ -35,7 +35,7 @@ module Gem::Installer::Nice
         pkg_kit = session_bus.introspect("org.freedesktop.PackageKit", "/org/freedesktop/PackageKit")
         pkg_kit['org.freedesktop.PackageKit.Modify'].InstallPackageNames(0, names, 'show-confirm-install')
       rescue Error::ENOENT
-        system "su -c '#{names.join(' ')}'"
+        system "su -c 'yum install #{names.join(' ')}'"
       end
     end
 
