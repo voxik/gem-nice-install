@@ -1,3 +1,5 @@
+require 'dbus'
+
 module Gem::Installer::Nice
   class FedoraExtInstaller < BaseExtInstaller
 
@@ -19,8 +21,16 @@ module Gem::Installer::Nice
 
     def install_ext_dependencies_for gem_name, deps
       puts "Yum installing these native dependencies for Gem '#{gem_name}':"
-      puts deps.join ' '
-      system("sudo yum install #{deps.join ' '}")
+      install_using_packagekit deps
     end
+
+    private
+
+    def install_using_packagekit(names=[])
+      session_bus = DBus::SessionBus.instance
+      pkg_kit = session_bus.introspect("org.freedesktop.PackageKit", "/org/freedesktop/PackageKit")
+      pkg_kit['org.freedesktop.PackageKit.Modify'].InstallPackageNames(0, names, 'show-confirm-install')
+    end
+
   end
 end

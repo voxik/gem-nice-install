@@ -10,9 +10,9 @@ EOF
 
   s.homepage = "https://github.com/voxik/gem-nice-install"
   s.licenses = ["MIT"]
-  s.author   = ["Vít Ondruch", "Bohuslav Kabrda", "Ivan Nečas"]
+  s.author   = ["Vít Ondruch", "Bohuslav Kabrda", "Ivan Nečas", "Michal Fojtik"]
   s.email    = "vondruch@gmail.com"
-
+  s.add_dependency('ruby-dbus')
   s.files = Dir["README.md", "MIT", "data/**/*.yml", "lib/**/*.rb"]
 end
 
