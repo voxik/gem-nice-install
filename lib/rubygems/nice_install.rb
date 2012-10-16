@@ -15,8 +15,11 @@ module Gem
         super
       rescue ExtensionBuildError => e
         # Install platform dependencies and try the build again.
-        super if install_platform_dependencies
-        raise
+        if install_platform_dependencies
+          super
+        else
+          raise
+        end
       end
 
       def install_platform_dependencies
@@ -30,6 +33,7 @@ module Gem
               raise Gem::InstallError, "Failed to install native dependencies for '#{spec.name}'."
             end
           end
+          return true
         end
       end
     end
