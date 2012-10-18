@@ -13,7 +13,7 @@ Please note, that the currently, only Fedora is supported. However, it should be
 To make bundler to use this gem as well, you need to load the rubygems_plugin before. The easiest way is to make an alias in your `~/.bashrc` or so:
 
 ```
-alias bundle='RUBYOPT="-rrubygems/nice_install"  bundle'
+alias bundle='RUBYOPT="-rrubygems/nice_install" bundle'
 ```
 
 ## license
