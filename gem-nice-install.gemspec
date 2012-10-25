@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 gemspec = Gem::Specification.new do |s|
   s.name     = "gem-nice-install"
   s.version  = "0.1.0"
