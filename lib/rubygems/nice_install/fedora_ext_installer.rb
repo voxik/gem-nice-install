@@ -18,7 +18,6 @@ module Gem::Installer::Nice
     end
 
     def install_ext_dependencies_for gem_name, deps
-      say "Installing native dependencies for Gem '#{gem_name}': #{deps.join ' '}"
       install_using_packagekit deps
     end
 

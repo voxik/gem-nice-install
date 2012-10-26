@@ -11,6 +11,8 @@ module Gem
     module Nice
       require 'rubygems/nice_install/distro_guesser'
 
+      include Gem::UserInteraction
+
       def build_extensions
         super
       rescue ExtensionBuildError => e
@@ -29,6 +31,7 @@ module Gem
           end
 
           unless missing_deps.empty?
+            say "Installing native dependencies for Gem '#{spec.name}': #{missing_deps.join ' '}"
             unless ext_installer.install_ext_dependencies_for(spec.name, missing_deps)
               raise Gem::InstallError, "Failed to install native dependencies for '#{spec.name}'."
             end
