@@ -30,7 +30,7 @@ module Gem::Installer::Nice
 
     def get_deps(gem)
       load_dep_files
-      @deps["gems"][gem]
+      @deps["gems"][gem] || []
     end
 
     private
