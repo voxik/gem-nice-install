@@ -1,6 +1,8 @@
 require 'yaml'
 module Gem::Installer::Nice
   class BaseExtInstaller
+    include Gem::UserInteraction
+
     def default_ext_dependencies
       raise NotImplementedError
     end

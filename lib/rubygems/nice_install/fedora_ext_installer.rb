@@ -18,7 +18,7 @@ module Gem::Installer::Nice
     end
 
     def install_ext_dependencies_for gem_name, deps
-      puts "Yum installing these native dependencies for Gem '#{gem_name}':"
+      say "Installing native dependencies for Gem '#{gem_name}': #{deps.join ' '}"
       install_using_packagekit deps
     end
 
@@ -38,7 +38,7 @@ module Gem::Installer::Nice
       rescue Errno::ENOENT
         install_using_yum names
       rescue LoadError
-        warn "To use PackageKit installation, 'ruby-dbus' package needs to be installed. (yum install rubygem-ruby-dbus)"
+        say "To use PackageKit installation, 'ruby-dbus' package needs to be installed. (yum install rubygem-ruby-dbus)"
         install_using_yum names
       end
     end
