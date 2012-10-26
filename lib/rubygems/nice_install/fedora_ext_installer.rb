@@ -38,7 +38,7 @@ module Gem::Installer::Nice
       rescue Errno::ENOENT
         install_using_yum names
       rescue LoadError
-        warn "PackageKit installation require 'ruby-dbus' package to be installed. (yum install ruby-dbus)"
+        warn "To use PackageKit installation, 'ruby-dbus' package needs to be installed. (yum install rubygem-ruby-dbus)"
         install_using_yum names
       end
     end
