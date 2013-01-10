@@ -17,7 +17,7 @@ module Gem::Installer::Nice
 
     def self.distro_ext_installer
       require "rubygems/nice_install/#{distro}_ext_installer"
-      klass = Gem::Installer::Nice.const_get("#{distro.capitalize}ExtInstaller")
+      klass = Gem::Installer::Nice.const_get("#{distro.to_s.capitalize}ExtInstaller")
       klass.new if klass && klass != BaseExtInstaller
     end
 
