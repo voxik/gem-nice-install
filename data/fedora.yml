@@ -128,6 +128,8 @@ gems:
   rsvg2-devel:
   - librsvg2-devel
   - rubygem-cairo-devel
+  ruby-libvirt:
+  - libvirt-devel
   ruby-opengl:
   - freeglut-devel
   - libGL-devel
