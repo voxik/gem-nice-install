@@ -9,6 +9,7 @@ module Gem
 
   class Installer
     module Nice
+      require 'rubygems/user_interaction'
       require 'rubygems/nice_install/distro_guesser'
 
       include Gem::UserInteraction
