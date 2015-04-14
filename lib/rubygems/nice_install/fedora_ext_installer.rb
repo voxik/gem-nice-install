@@ -18,13 +18,29 @@ module Gem::Installer::Nice
     end
 
     def install_ext_dependencies_for gem_name, deps
-      install_using_packagekit deps
+      install_using_packagekit(deps) \
+        || install_using_dnf(deps) \
+        || install_using_yum(deps)
     end
 
     private
 
+    def install_using_dnf(names=[])
+      if system("dnf --help > /dev/null 2>&1")
+        system "su -c 'dnf install #{names.join(' ')}'"
+      else
+        say "DNF is not available."
+        false
+      end
+    end
+
     def install_using_yum(names=[])
-      system "su -c 'yum install #{names.join(' ')}'"
+      if system("yum --help > /dev/null 2>&1")
+        system "su -c 'yum install #{names.join(' ')}'"
+      else
+        say "YUM is not available."
+        false
+      end
     end
 
     def install_using_packagekit(names=[])
@@ -35,10 +51,13 @@ module Gem::Installer::Nice
         pkg_kit['org.freedesktop.PackageKit.Modify'].InstallPackageNames(0, names, 'show-confirm-install')
       # DBus is not availabe in non-X environment.
       rescue Errno::ENOENT
-        install_using_yum names
+        say "PackageKit failed. DBus activation failed."
+        false
       rescue LoadError
-        say "To use PackageKit installation, 'ruby-dbus' package needs to be installed. (yum install rubygem-ruby-dbus)"
-        install_using_yum names
+        say "PackageKit failed. 'rubygem-ruby-dbus' package needs to be installed."
+        false
+      else
+        true
       end
     end
 
