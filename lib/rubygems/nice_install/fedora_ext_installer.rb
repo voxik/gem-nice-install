@@ -50,7 +50,10 @@ module Gem::Installer::Nice
         pkg_kit = session_bus.introspect("org.freedesktop.PackageKit", "/org/freedesktop/PackageKit")
         pkg_kit['org.freedesktop.PackageKit.Modify'].InstallPackageNames(0, names, 'show-confirm-install')
       # DBus is not availabe in non-X environment.
-      rescue Errno::ENOENT
+      #
+      # Rescue NoMethodError when DISPLAY env variable is not set.
+      # See https://github.com/mvidner/ruby-dbus/issues/53
+      rescue NoMethodError, Errno::ENOENT
         say "PackageKit failed. DBus activation failed."
         false
       rescue LoadError
